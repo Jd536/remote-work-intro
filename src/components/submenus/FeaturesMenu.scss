@@ -1,0 +1,45 @@
+@import "../../scss/minxin";
+
+.features__menu-container {
+  background-color: hsl(0, 0%, 100%);
+  width: 17rem;
+  position: absolute;
+  top: 4rem;
+  left: -5rem;
+  z-index: 999;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 1.5rem 2rem rgba($color: #000000, $alpha: .2);
+
+  @include responsive(phone){
+    background-color: hsl(0, 0%, 98%);
+    position: relative;
+    top: 1rem;
+    box-shadow: none;
+    padding: 1rem 0 1rem 5rem;
+  }
+ 
+}
+
+.features__menu{
+  width: 100%;
+  list-style: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center ;
+
+
+
+  &-item {
+    display: flex;
+    color: hsl(0, 0%, 41%);
+    padding: .6rem ;
+
+
+    &-text {
+      margin-left: 1.5rem;
+      display: inline-block;
+    }
+ }
+
+}
