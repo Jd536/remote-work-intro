@@ -43,12 +43,37 @@ function Navigation (props) {
   }
 
   // OOUTSIDE MENU CLICK MONITORING - WRITE A FUNCTION THAT CLOSE THE SUB-MENUS WHEN USER CLICK OUTSIDE ANYWHERE ELSE ON THE WINDOW
+  let featuresRef = useRef(null)
+  let companyRef = useRef(null)
  
+ useEffect(()=>{
+  document.addEventListener('mousedown', (e)=>{
+    if( featuresRef!==null && featuresRef.current.contains(e.target)){
+      return
+    } else{
+      setOpenFeaturesMenu(false)
+    }
+  })
+ }, [openFeaturesMenu])
+
+  //handles company submenu when clicked outside
+ useEffect(()=>{
+  document.addEventListener('mousedown', (e)=>{
+    if(companyRef!==null && companyRef.current.contains(e.target)){
+      return
+    } else{
+      setOpenCompanyMenu(false)
+    }
+  })
+ }, [openCompanyMenu])
+
+  //---------------------------------------------------------------------------------------------------------------------------------------
+
 
   useEffect(() =>{
     const timer = setTimeout(() => {
       setOpenFeaturesMenu(false)
-    }, 30000);
+    }, 7000);
 
     return () => clearTimeout(timer)
     }, 
@@ -57,7 +82,7 @@ function Navigation (props) {
   useEffect(() =>{
     const timer = setTimeout(() => {
       setOpenCompanyMenu(false)
-    }, 30000);
+    }, 7000);
 
     return () => clearTimeout(timer)
     }, 
@@ -81,6 +106,7 @@ function Navigation (props) {
                 showMenu?'show__menu navigation__menu':'navigation__menu'
                 }>
                 <li  
+                ref={featuresRef}
               
                 className={
                 openFeaturesMenu?
@@ -101,7 +127,9 @@ function Navigation (props) {
                   }
                   
                 </li>
-                <li className={
+                <li 
+                  ref={companyRef}
+                className={
                   openCompanyMenu?
                   "navigation__menu-item open-sub-menu"
                     :
